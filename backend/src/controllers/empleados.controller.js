@@ -20,8 +20,8 @@ empleadoCtrl.createEmpleado=async(req,res)=>{
     sueldo:req.body.sueldo
     });
     
-    await empleado.save(); // Guarda el empleado en la base de datos
-    res.json('status: Datos guardados'); // Confirma que los datos fueron guardados
+    const empleadoGuardado = await empleado.save(); // Guarda el empleado en la base de datos
+    res.json(empleadoGuardado); // Retorna el empleado creado
 }
 
 // Función para obtener un empleado específico por ID
@@ -43,8 +43,8 @@ empleadoCtrl.editEmpleado=async(req,res)=>{
     departamento: req.body.departamento,
     sueldo: req.body.sueldo
     };
-    await Empleado.findByIdAndUpdate(id, {$set:empleado},{new: true}); // Actualiza el empleado
-    res.json('status: Datos actualizados'); // Confirma que los datos fueron actualizados
+    const empleadoActualizado = await Empleado.findByIdAndUpdate(id, {$set:empleado},{new: true}); // Actualiza el empleado
+    res.json(empleadoActualizado); // Retorna el empleado actualizado
     
 
 }

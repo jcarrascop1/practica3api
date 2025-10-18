@@ -1,0 +1,70 @@
+<!-- Contenedor principal con diseño de dos columnas -->
+<div class="row">
+    <!-- Columna izquierda: Formulario de registro de empleados -->
+    <div class="col-md-4">
+        <div class="card">
+            <!-- Encabezado del formulario -->
+            <div class="card-body">
+                <h1>Registro de Nuevo Empleado</h1>
+            </div>
+            <!-- Formulario reactivo de Angular con enlace bidireccional -->
+            <form #empleadoForm="ngForm" (ngSubmit)="empleadoService.selectedEmpleado._id ? updateEmpleado(empleadoForm) : addEmpleado(empleadoForm)">
+                <!-- Campo de entrada para el nombre del empleado -->
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Ingrese su nombre" name="nombre"
+                        [(ngModel)]="empleadoService.selectedEmpleado.nombre">
+                </div>
+                <!-- Campo de entrada para el cargo del empleado -->
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Ingrese su cargo" name="cargo"
+                        [(ngModel)]="empleadoService.selectedEmpleado.cargo">
+                </div>
+                <!-- Campo de entrada para el departamento del empleado -->
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Ingrese su departamento" name="departamento"
+                        [(ngModel)]="empleadoService.selectedEmpleado.departamento">
+                </div>
+                <!-- Campo de entrada para el sueldo del empleado -->
+                <div class="form-group">
+                    <input type="number" class="form-control" placeholder="Ingrese su sueldo" name="sueldo"
+                        [(ngModel)]="empleadoService.selectedEmpleado.sueldo">
+                </div>
+                <!-- Botones de acción del formulario -->
+                <button type="submit" class="btn btn-primary">
+                    {{empleadoService.selectedEmpleado._id ? 'Actualizar' : 'Crear'}}
+                </button>
+                <button type="button" class="btn btn-secondary" (click)="resetForm()">Limpiar</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Columna derecha: Tabla de empleados existentes -->
+    <div class="col-md-8">
+        <!-- Tabla responsiva con lista de empleados -->
+        <table class="table table-striped">
+            <!-- Encabezado de la tabla -->
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Cargo</th>
+                    <th>Departamento</th>
+                    <th>Operaciones</th>
+                </tr>
+            </thead>
+            <!-- Cuerpo de la tabla con datos dinámicos -->
+            <tbody>
+                <!-- Directiva *ngFor para iterar sobre la lista de empleados -->
+                <tr *ngFor="let empleado of empleadoService.empleados">
+                    <!-- Datos del empleado con interpolación de Angular -->
+                    <td>{{empleado.nombre}}</td>
+                    <td>{{empleado.cargo}}</td>
+                    <td>{{empleado.departamento}}</td>
+                    <!-- Botones de operaciones para cada empleado -->
+                    <td>
+                        <button class="btn btn-secondary" (click)="editEmpleado(empleado)">Actualizar</button>
+                        <button class="btn btn-danger" (click)="deleteEmpleado(empleado._id || '')">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
