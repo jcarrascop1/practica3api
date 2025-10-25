@@ -28,6 +28,8 @@ empleadoCtrl.createEmpleado=async(req,res)=>{
 empleadoCtrl.getEmpleado=async(req,res)=>{
     const {id}=req.params; // Extrae el ID de los parámetros de la URL
     const empleado = await Empleado.findById(id); // Busca el empleado por ID
+    if (!empleado)
+        return res.status(404).json({ mensaje: 'ID de empleado no encontrado' });
     res.json(empleado); // Retorna el empleado encontrado
 }
 
