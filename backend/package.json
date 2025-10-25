@@ -3,22 +3,37 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon src/index.js"
+    "test": "mocha src/tests/test1.test.js --exit",
+    "dev": "nodemon src/index.js",
+    "build": "babel src -d dist --sourcemaps",
+    "start": "nodemon src/index.js --exec babel-node",
+    "serve": "node dist/index.js",
+    "clean": "rimraf dist"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "@graphql-tools/schema": "^10.0.25",
+    "@graphql-tools/utils": "^10.9.1",
     "cors": "^2.8.5",
     "express": "^5.1.0",
+    "express-graphql": "^0.12.0",
+    "graphql": "^15.3.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.19.1",
-    "morgan": "^1.10.1"
+    "morgan": "^1.10.1",
+    "rimraf": "^6.0.1"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10"
+    "@babel/cli": "^7.28.3",
+    "@babel/core": "^7.28.5",
+    "@babel/node": "^7.28.0",
+    "@babel/preset-env": "^7.28.5",
+    "mocha": "^11.7.4",
+    "nodemon": "^3.1.10",
+    "supertest": "^7.1.4"
   },
   "description": ""
 }

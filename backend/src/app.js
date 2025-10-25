@@ -25,6 +25,15 @@ app.use(cors({
 // Configuración de rutas para la API de empleados
 app.use('/api/empleados',require('./routes/empleados.routes'));
 
+//Graphql
+const expressGraphqlHTTP = require('express-graphql');
+const schema = require ('./graphql/schema.js');
+app.use('/graphql', expressGraphqlHTTP.graphqlHTTP({
+    graphiql: true,
+    schema: schema
+}
+));
+
 // Exportación de la aplicación configurada
 module.exports=app;
 
