@@ -9,7 +9,7 @@ import { Empleado } from '../models/empleado';
 })
 export class EmpleadoService {
   // URL base de la API REST para empleados
-  URL_API = 'http://localhost:3000/api/empleados';
+  URL_API = 'http://18.117.181.45:3000/api/empleados';
   
   // Array que almacena la lista de empleados
   empleados: Empleado[] = [];
