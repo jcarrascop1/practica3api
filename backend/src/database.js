@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 
 // URI de conexión a MongoDB Atlas (base de datos en la nube)
-const URI = 'mongodb+srv://usuario:password@cluster0.hlnvus1.mongodb.net/db_usuarios';
+const URI = process.env.DATABASE_URL;
 
 // Establecimiento de la conexión con la base de datos
 mongoose.connect(URI)
